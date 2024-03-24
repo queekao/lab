@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <title>HLS Player</title>
+</head>
+<body>
+    <video id="video" width="1440" height="800" controls muted></video>
+    <!-- <video id="video" width="1440" height="800" src="http://localhost:3000/video" controls></video> -->
+    <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+    <script>
+        const video = document.getElementById('video');
+        // const videoSrc = '/videos/output.m3u8'; // if you send the html file from server
+        const videoSrc = 'http://localhost:3000/video/output.m3u8'; // if you make a request from client to server
+        if (Hls.isSupported()) {
+            const hls = new Hls();
+            hls.loadSource(videoSrc);
+            hls.attachMedia(video);            
+            hls.on(Hls.Events.MANIFEST_PARSED, () => {
+                // streaming load the ts file from the server
+                video.play();
+            });
+        } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
+            // application/vnd.apple.mpegurl is associated with HLS (HTTP Live Streaming) playlist files
+            // When the browser has built-in HLS support (check using `canPlayType`),
+            // we can provide an HLS manifest (i.e. .m3u8 URL) directly to the video
+            video.src = videoSrc;
+            video.addEventListener('loadedmetadata', () => {
+                video.play();
+            });
+        }
+    </script>
+</body>
+</html>

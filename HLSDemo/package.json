@@ -1,0 +1,23 @@
+{
+  "name": "hlsdemo",
+  "version": "1.0.0",
+  "description": "This is a demo of http live stream",
+  "main": "index.js",
+  "scripts": {
+    "generate:m3u8": "node ./src/ffmpeg.js",
+    "start:server": "nodemon ./src/app.js",
+    "start:client": "http-server",
+    "dev": "npm-run-all --parallel generate:m3u8 start:server"
+  },
+  "author": "Quee",
+  "license": "ISC",
+  "dependencies": {
+    "@ffmpeg-installer/ffmpeg": "^1.1.0",
+    "express": "^4.19.1",
+    "fluent-ffmpeg": "^2.1.2",
+    "hls-server": "^1.5.0"
+  },
+  "devDependencies": {
+    "http-server": "^14.1.1"
+  }
+}

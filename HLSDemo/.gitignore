@@ -1,0 +1,27 @@
+# compiled output
+# Dependencies
+node_modules/
+output*.*
+
+# Logs
+*.log
+npm-debug.log*
+pnpm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log*
+yarn.lock
+package-lock.json
+# OS
+.DS_Store
+
+# IDE - VSCode
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+.env
+.restart
+.bash_history
+static/image
