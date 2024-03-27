@@ -4,7 +4,7 @@
   "description": "This is a demo of http live stream",
   "main": "index.js",
   "scripts": {
-    "generate:m3u8": "node ./src/ffmpeg.js",
+    "generate:m3u8": "node ./src/generatem3u8.js",
     "start:server": "nodemon ./src/app.js",
     "start:client": "http-server",
     "dev": "npm-run-all --parallel generate:m3u8 start:server"
