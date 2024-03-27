@@ -16,7 +16,8 @@ app.use((req, res, next) => {
   next();
 });
 
-app.get("/video/:fileName", (req, res) => {
+app.get("/video/:folderName/:fileName", (req, res) => {
+  const folderName = req.params.folderName;
   const fileName = req.params.fileName;
   let contentType;
 
@@ -28,7 +29,7 @@ app.get("/video/:fileName", (req, res) => {
 
   const filePath = path.join(
     __dirname,
-    "videos",
+    `videos/${folderName}`,
     fileName.startsWith("segment") ? "segments" : "",
     fileName
   );
@@ -36,20 +37,6 @@ app.get("/video/:fileName", (req, res) => {
   fs.exists(filePath, (exists) => {
     if (exists) {
       res.setHeader("Content-Type", contentType);
-      const readStream = fs.createReadStream(filePath);
-      readStream.pipe(res);
-    } else {
-      console.error("File not found:", filePath);
-      res.sendStatus(404);
-    }
-  });
-});
-app.get("/video/:segmentName", (req, res) => {
-  const filePath = path.join(__dirname, "videos", req.params.segmentName);
-
-  fs.exists(filePath, (exists) => {
-    if (exists) {
-      res.setHeader("Content-Type", "video/MP2T");
       const readStream = fs.createReadStream(filePath);
       readStream.pipe(res);
     } else {
