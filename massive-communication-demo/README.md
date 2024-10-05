@@ -1,7 +1,7 @@
 # Massive Communication Demo
 
 This project is designed to generate a huge amount of number then format them with the `$`
-and `,` symbol, ensuring smooth performance with stable CPU usage and memory.
+and `,` symbol, ensuring smooth inter-process communication performance with stable CPU usage and memory.
 
 > **dest.txt** : The formatting number
 > **text-gigantic.txt**: The original the number
